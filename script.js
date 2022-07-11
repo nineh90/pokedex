@@ -18,20 +18,28 @@ function forLoopRenderPokemon(pokemon){
     let loadedPokemon = document.getElementById('pokedexContainer');
     loadedPokemon.innerHTML = '';
     for (let i = 0; i < 100; i++) {
-        const pokeName = pokemon[i]['name'];
+        let pokeName = pokemon[i]['name'];
         let name = pokeName.toUpperCase();
         loadedPokemon.innerHTML += `
-        <div class="pokemon-name-container">${name}</div>`;
-        console.log(pokeName)
-    }
+        <div class="pokemon-name-container">${name}<img id="image${i}"></div>`;
+        console.log('Name:',pokeName);
+        loadCurrentPokemonFromApi(pokeName,i);
+    }    
+   
 }
 
-async function loadCurrentPokemonFromApi(){
-    let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
+async function loadCurrentPokemonFromApi(pokeName,i){
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responseUrl = await fetch(url);
     currentPokemon = await responseUrl.json();
     console.log('Loaded Pokemon', currentPokemon);
-    renderPokemonInfo(currentPokemon);
+    generateImage(i);
+    //renderPokemonInfo(currentPokemon);
+}
+
+function generateImage(i){
+    let pokemonImage = currentPokemon['sprites']['front_shiny'];
+    document.getElementById(`image${i}`).src = pokemonImage
 }
 
 function renderPokemonInfo(){
