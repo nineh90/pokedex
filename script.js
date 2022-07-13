@@ -40,7 +40,7 @@ async function showCurrentPokemonInfo(i,pokeName){
     let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responseUrl = await fetch(url);
     currentPokemon[i] = await responseUrl.json();
-    let name = currentPokemon[i]['results'][i];
+    let name = currentPokemon[i]['results'][i]['name'];
     document.getElementById('currentCard').classList.remove = 'd-none';
     document.getElementById('currentCard').innerHTML +='DEINE MUDDA' ;
     console.log('Deine Mudda ist', name);
