@@ -11,7 +11,7 @@ async function load100PokemonFromApi(){
     let loadedPokemon = await responseUrl.json();
     let pokemon = loadedPokemon['results']
     forLoopRenderPokemon(pokemon);
-    console.log(pokemon);
+    //console.log(pokemon);
 }
 
 function forLoopRenderPokemon(pokemon){
@@ -20,21 +20,43 @@ function forLoopRenderPokemon(pokemon){
     for (let i = 0; i < 100; i++) {
         let pokeName = pokemon[i]['name'];
         let name = pokeName.toUpperCase();
-        loadedPokemon.innerHTML += `
-        <div class="pokemon-name-container">${name}<img id="image${i}"></div>`;
-        console.log('Name:',pokeName);
+        loadedPokemon.innerHTML += generatePokemonHTML(name,i);
+       // console.log('Name:',pokeName);
         loadCurrentPokemonFromApi(pokeName,i);
     }    
-   
+}
+
+function generatePokemonHTML(name, i){
+    return`
+        <div id="pokemon${i}" onclick="showCurrentPokemonInfo(${i},name)" class="pokemon-name-container">
+            <div id="name${i}" class="margin-bottom">${name}</div>
+            <div class="overview">
+                <img id="image${i}">
+            </div>
+        </div>`
+}
+
+async function showCurrentPokemonInfo(i,pokeName){
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+    let responseUrl = await fetch(url);
+    currentPokemon[i] = await responseUrl.json();
+    let name = currentPokemon[i]['results'][i];
+    document.getElementById('currentCard').classList.remove = 'd-none';
+    document.getElementById('currentCard').innerHTML +='DEINE MUDDA' ;
+    console.log('Deine Mudda ist', name);
+    
 }
 
 async function loadCurrentPokemonFromApi(pokeName,i){
+    await getPokemonDataFromAPI(pokeName);
+    console.log('Loaded Pokemon', currentPokemon);
+    generateImage(i);
+}
+
+async function getPokemonDataFromAPI(pokeName){
     let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responseUrl = await fetch(url);
     currentPokemon = await responseUrl.json();
-    console.log('Loaded Pokemon', currentPokemon);
-    generateImage(i);
-    //renderPokemonInfo(currentPokemon);
 }
 
 function generateImage(i){
@@ -42,12 +64,15 @@ function generateImage(i){
     document.getElementById(`image${i}`).src = pokemonImage
 }
 
-function renderPokemonInfo(){
+/*function renderPokemonInfo(){
+    document.getElementById('card').classList.remove('d-none');
+    document.getElementById('pokedexContainer').classList.add('d-none');
     let currentCard = document.getElementById('pokemonName');
     currentPokemonName = currentPokemon['species']['name']; 
     createPokemonImage(currentPokemon);
     createPokemnonHTML(currentCard, currentPokemonName);
     renderPokemenAttack(currentPokemon);
+    console.log('es geht');
 }
 
 function renderPokemenAttack(){
@@ -91,4 +116,4 @@ function createPokemnonHTML(currentCard, currentPokemonName){
 function createPokemonImage(){
     let pokemonImage = currentPokemon['sprites']['front_shiny'];
     document.getElementById('pokemonImg').src = pokemonImage;
-}
+}*/

@@ -13,23 +13,18 @@
     <title>API POKEDEX</title>
 </head>
 <body onload="init()">
-
-
-    <div class="pokedex-container"></div> 
-    
     <div class="pokemon-info-container">
-      <div class="pokemon-card d-none">              
-        <h1 id="pokemonName"></h1>
-        <div>
-            <img class="current-pokemon-image" id="pokemonImg">
-        </div>    
-        <div id="pokemonAttack">
-            <h4><span>3</span> von <span id="attackLength"> ? </span> Attacken</h4>
-        </div>
-      </div> 
-      
-      <div class="pokemon-overview w-100" id="pokedexContainer"></div>
-      
+        <div class="pokemon-overview w-100" id="pokedexContainer"></div>
+    </div>
+    <div id="currentCard" class="absolute w-100 d-none">
+        <div>   
+          <div id="" class="pokemon-name-container">
+          <div id="" class="margin-bottom">${name}</div>
+          <div class="overview">
+              <img id="image${i}">
+          </div>
+      </div>
+    </div>
     </div>
 </body>
 </html>
