@@ -1,34 +1,36 @@
 let currentPokemon;
+let loadedPokemons;
 let startSound = new Audio('');
+const maxPokemons = 100;
 
 async function init(){
-   await load100PokemonFromApi();
+    await loadPokemonFromApi();
 }
 
-async function load100PokemonFromApi(){
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
+async function loadPokemonFromApi(){
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${maxPokemons}&offset=0`;
     let responseUrl = await fetch(url);
     let loadedPokemon = await responseUrl.json();
-    let pokemon = loadedPokemon['results']
-    forLoopRenderPokemon(pokemon);
+    loadedPokemons = loadedPokemon['results']
+    forLoopRenderPokemon();
     //console.log(pokemon);
 }
 
-function forLoopRenderPokemon(pokemon){
-    let loadedPokemon = document.getElementById('pokedexContainer');
-    loadedPokemon.innerHTML = '';
-    for (let i = 0; i < 100; i++) {
-        let pokeName = pokemon[i]['name'];
-        let name = pokeName.toUpperCase();
-        loadedPokemon.innerHTML += generatePokemonHTML(name,i);
-       // console.log('Name:',pokeName);
-        loadCurrentPokemonFromApi(pokeName,i);
+function forLoopRenderPokemon(){
+    let pokedexContainer = document.getElementById('pokedexContainer');
+    pokedexContainer.innerHTML = '';
+    for (let i = 0; i <= loadedPokemons.length; i++) {
+        if (loadedPokemons[i]) {
+            let pokeName = loadedPokemons[i]['name'];
+            pokedexContainer.innerHTML += generatePokemonHTML(pokeName.toUpperCase(),i);
+            loadCurrentPokemonFromApi(pokeName,i);
+        }
     }    
 }
 
 function generatePokemonHTML(name, i){
     return`
-        <div id="pokemon${i}" onclick="showCurrentPokemonInfo(${i},name)" class="pokemon-name-container">
+        <div id="pokemon${i}" onclick="showCurrentPokemonInfo('${name.toLowerCase()}')" class="pokemon-name-container">
             <div id="name${i}" class="margin-bottom">${name}</div>
             <div class="overview">
                 <img id="image${i}">
@@ -36,21 +38,36 @@ function generatePokemonHTML(name, i){
         </div>`
 }
 
-async function showCurrentPokemonInfo(i,pokeName){
+async function showCurrentPokemonInfo(pokeName){
     let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
     let responseUrl = await fetch(url);
-    currentPokemon[i] = await responseUrl.json();
-    let name = currentPokemon[i]['results'][i]['name'];
-    document.getElementById('currentCard').classList.remove = 'd-none';
-    document.getElementById('currentCard').innerHTML +='DEINE MUDDA' ;
-    console.log('Deine Mudda ist', name);
-    
+    currentPokemon = await responseUrl.json();
+    let currentPokemonCard = currentPokemon['abilities'];
+
+    for (let j = 0; j < currentPokemonCard.length; j++) {
+        const element = currentPokemonCard[j];
+        let currentAttack = currentPokemonCard[j]['ability']['name']
+        console.log('TEST',currentAttack)
+    }
+
+    setStyleAttributes(pokeName);
+    let image = document.getElementById(`activePokemonImage`);
+    generateImage(image);
+    console.log(pokeName, currentPokemonCard )
+}
+
+function setStyleAttributes(pokeName){
+    document.getElementById('currentCard').classList.remove('d-none');
+    document.getElementById('pokedexContainer').classList.add('d-none');
+    document.getElementById('info').style.backgroundImage =  "url('./img/pikachu2.jpg')";
+    document.getElementById('activePokemonName').innerHTML = 'Deine Mudda ist<br>' + pokeName.toUpperCase();
 }
 
 async function loadCurrentPokemonFromApi(pokeName,i){
     await getPokemonDataFromAPI(pokeName);
     console.log('Loaded Pokemon', currentPokemon);
-    generateImage(i);
+    let image = document.getElementById(`image${i}`)
+    generateImage(image);
 }
 
 async function getPokemonDataFromAPI(pokeName){
@@ -59,9 +76,15 @@ async function getPokemonDataFromAPI(pokeName){
     currentPokemon = await responseUrl.json();
 }
 
-function generateImage(i){
+function generateImage(image){
     let pokemonImage = currentPokemon['sprites']['front_shiny'];
-    document.getElementById(`image${i}`).src = pokemonImage
+    image.src = pokemonImage;
+}
+
+function closeCurrentPokemon(){
+    document.getElementById('currentCard').classList.add('d-none');
+    document.getElementById('pokedexContainer').classList.remove('d-none');
+    document.getElementById('info').style.backgroundImage =  "url('./img/pokeball.png.jpg')";
 }
 
 /*function renderPokemonInfo(){

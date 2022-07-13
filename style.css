@@ -1,6 +1,13 @@
 body{
     margin: 0;
-   
+}
+
+#activePokemonName {
+    color: #333333;
+}
+
+.pokemon-name-container:hover #activePokemonName {
+    color: white;
 }
 
 .pokemon-info-container{
@@ -10,7 +17,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('./img/pikachu2.jpg');
+    background-image: url('./img/pokeball.png.jpg');
     background-size: 100%;
     background-attachment:fixed;
     background-repeat: no-repeat;
@@ -52,6 +59,7 @@ body{
 .pokemon-name-container{
     width: 250px;
     height: 300px;
+    border-color: white;
     color: white;
     margin: 24px;
     border-radius: 24px;
@@ -63,7 +71,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: gold;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .pokemon-name-container img{
@@ -92,4 +100,12 @@ body{
     width: 100%;
     border-radius: 24px;
     background-color: rgb(7, 150, 160);
+}
+
+#current-pokemon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
 }
