@@ -6,7 +6,7 @@ function setStyleAttributes(pokeName){
 }
 
 function setGrassAttributes(imageBackground){
-    imageBackground.style.backgroundColor  = 'green';
+    imageBackground.style.backgroundColor = 'green';
     document.getElementById('activePokemonClass').src = './img/grass.png';
 }
 
@@ -90,6 +90,7 @@ function setRockAttributes(imageBackground){
     imageBackground.style.backgroundColor  = 'grey';
     document.getElementById('activePokemonClass').src = './img/rocks.png';
 }
+
 function pokemonIsRock(currentPokemonClass){
     return currentPokemonClass === 'rock'
 }

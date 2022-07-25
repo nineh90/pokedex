@@ -14,7 +14,7 @@ function setBackgroundCurrentPokemon(currentPokemonClass){
 }
 
 function checkForPokemonClass(currentPokemonClass, imageBackground){
-    currentPokemonIsGrass(currentPokemonClass, imageBackground);
+    ifCurrentPokemonIsGrass(currentPokemonClass, imageBackground);
     currentPokemonIsWater(currentPokemonClass, imageBackground);
     currentPokemonIsFire(currentPokemonClass, imageBackground);
     currentPokemonIsBug(currentPokemonClass, imageBackground);
@@ -24,9 +24,10 @@ function checkForPokemonClass(currentPokemonClass, imageBackground){
     currentPokemonIsGround(currentPokemonClass, imageBackground);
     currentPokemonIsFairy(currentPokemonClass, imageBackground);
     currentPokemonIsRock(currentPokemonClass, imageBackground);
+    currentPokemonIsPsychic(currentPokemonClass, imageBackground);
 }
 
-function currentPokemonIsGrass(currentPokemonClass, imageBackground){
+function ifCurrentPokemonIsGrass(currentPokemonClass, imageBackground){
     if (pokemonIsGrass(currentPokemonClass)) {
         setGrassAttributes(imageBackground);
     } 
@@ -87,16 +88,15 @@ function currentPokemonIsRock(currentPokemonClass, imageBackground){
     }
 }
 
-//downlaod flaticon chance color
-// function currentPokemonIsPsychic(currentPokemonClass, imageBackground){
-//     if(currentPokemonClass === 'psychic'){
-//         imageBackground.style.backgroundColor  = 'black';
-//         document.getElementById('activePokemonClass').src = './img/rocks.png';
-//     }
-// }
+function currentPokemonIsPsychic(currentPokemonClass, imageBackground){
+    if(currentPokemonClass === 'psychic'){
+        imageBackground.style.backgroundColor  = 'black';
+        document.getElementById('activePokemonClass').src = './img/hypocrisy.png';
+    }
+}
 
 function generateImage(image){
-    let pokemonImage = currentPokemon['sprites']['front_shiny'];
+    let pokemonImage = currentPokemon['sprites']['front_default'];
     image.src = pokemonImage;
 }
 

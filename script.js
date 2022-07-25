@@ -1,6 +1,6 @@
 let currentPokemon;
 let loadedPokemons;
-let cardSound = new Audio('./mp3/pika.mp3');
+//let cardSound = new Audio('./mp3/pika.mp3');
 const maxPokemons = 100;
 
 async function init(){
@@ -10,13 +10,11 @@ async function init(){
 function forLoopRenderPokemon(){
     let pokedexContainer = document.getElementById('pokedexContainer');
     pokedexContainer.innerHTML = '';
-    for (let i = 0; i <= loadedPokemons.length; i++) {
-        if (loadedPokemons[i]) {
+    for (let i = 0; i < loadedPokemons.length; i++) {
             let pokeName = loadedPokemons[i]['name'];
             pokedexContainer.innerHTML += generatePokemonHTML(pokeName.toUpperCase(),i);
             loadCurrentPokemonFromApi(pokeName,i);
-        }
-    }    
+    }   
 }
 
 function forLoopCurrentCard(currentPokemonCard){
@@ -26,6 +24,6 @@ function forLoopCurrentCard(currentPokemonCard){
             const element = currentPokemonCard[j];
             let currentAttack = currentPokemonCard[j]['ability']['name'];
             attackOutput.innerHTML += `<li>${currentAttack}</li>`;
-            console.log('TEST',currentAttack);
+            console.log('Attacke',currentAttack);    
         }
 }

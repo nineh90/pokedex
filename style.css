@@ -118,6 +118,15 @@ ul{
   
 }
 
+.cross{
+    width: 50px;
+    filter: invert(1);
+    position: absolute;
+    top: 13%;
+    left: 90%;
+    cursor: grab;
+}
+
 
 .pokemon-overview{
     display: flex;

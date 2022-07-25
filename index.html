@@ -20,12 +20,15 @@
         <div class="pokemon-overview w-100" id="pokedexContainer"></div>
     </div>
     <div class="">
-        <div onclick="closeCurrentPokemon()" id="currentCard" class="absolute w-100 d-none">
+        <div id="currentCard" class="absolute w-100 d-none">
             <div id="current-pokemon-wrapper">   
                 <div class="">
-                
-                    
-                    <img class=" w-100 margin-left" src="./img/message.png" alt="">
+                    <div>
+                        <img class=" w-100 margin-left" src="./img/message.png" alt="">
+                    </div>    
+                    <div onclick="closeCurrentPokemon()"  class="cross">
+                        <img class=" w-100" src="./img/cross.png" alt="">
+                    </div>    
                     <div class="absolutepokemon">
                         <h1 id="activePokemonName" class="">${name}</h1>
                             <h2 class="head">Attacks</h2>
