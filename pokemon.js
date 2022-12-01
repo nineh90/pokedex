@@ -15,16 +15,16 @@ function setBackgroundCurrentPokemon(currentPokemonClass){
 
 function checkForPokemonClass(currentPokemonClass, imageBackground){
     ifCurrentPokemonIsGrass(currentPokemonClass, imageBackground);
-    currentPokemonIsWater(currentPokemonClass, imageBackground);
-    currentPokemonIsFire(currentPokemonClass, imageBackground);
-    currentPokemonIsBug(currentPokemonClass, imageBackground);
-    currentPokemonIsNormal(currentPokemonClass, imageBackground);
-    currentPokemonIsPoison(currentPokemonClass, imageBackground);
-    currentPokemonIsElectric(currentPokemonClass, imageBackground);
-    currentPokemonIsGround(currentPokemonClass, imageBackground);
-    currentPokemonIsFairy(currentPokemonClass, imageBackground);
-    currentPokemonIsRock(currentPokemonClass, imageBackground);
-    currentPokemonIsPsychic(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsWater(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsFire(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsBug(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsNormal(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsPoison(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsElectric(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsGround(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsFairy(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsRock(currentPokemonClass, imageBackground);
+    ifcurrentPokemonIsPsychic(currentPokemonClass, imageBackground);
 }
 
 function ifCurrentPokemonIsGrass(currentPokemonClass, imageBackground){
@@ -33,62 +33,62 @@ function ifCurrentPokemonIsGrass(currentPokemonClass, imageBackground){
     } 
 }
 
-function currentPokemonIsWater(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsWater(currentPokemonClass, imageBackground){
     if(pokemonIsWater(currentPokemonClass)){
        setWaterAttributes(imageBackground);
     }  
 }
 
-function currentPokemonIsFire(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsFire(currentPokemonClass, imageBackground){
     if(pokemonIsFire(currentPokemonClass)){
        setFireAttributes(imageBackground);
     } 
 }
 
-function currentPokemonIsBug(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsBug(currentPokemonClass, imageBackground){
     if(pokemonIsBug(currentPokemonClass)){
         setBugAttributes(imageBackground);
     } 
 }
 
-function currentPokemonIsNormal(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsNormal(currentPokemonClass, imageBackground){
     if(pokemonIsNormal(currentPokemonClass)){
         setNormalAttributes(imageBackground);
     } 
 }
 
-function currentPokemonIsPoison(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsPoison(currentPokemonClass, imageBackground){
     if(pokemonIsPoison(currentPokemonClass)){
        setPoisonAttributes(imageBackground);
     }
 }
 
-function currentPokemonIsElectric(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsElectric(currentPokemonClass, imageBackground){
     if(pokemonIsElectric(currentPokemonClass)){
         setElectricAttributes(imageBackground);
     }   
 }
 
-function currentPokemonIsGround(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsGround(currentPokemonClass, imageBackground){
     if(pokemonIsGround(currentPokemonClass)){
         setGroundAttributes(imageBackground);
     } 
 }
 
 
-function currentPokemonIsFairy(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsFairy(currentPokemonClass, imageBackground){
     if(pokemonIsFairy(currentPokemonClass)){
         setFairyAttributes(imageBackground);
     }
 }
 
-function currentPokemonIsRock(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsRock(currentPokemonClass, imageBackground){
     if(pokemonIsRock(currentPokemonClass)){
         setRockAttributes(imageBackground);
     }
 }
 
-function currentPokemonIsPsychic(currentPokemonClass, imageBackground){
+function ifcurrentPokemonIsPsychic(currentPokemonClass, imageBackground){
     if(currentPokemonClass === 'psychic'){
         imageBackground.style.backgroundColor  = 'black';
         document.getElementById('activePokemonClass').src = './img/hypocrisy.png';

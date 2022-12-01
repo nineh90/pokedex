@@ -19,24 +19,24 @@ async function showCurrentPokemonInfo(pokeName){
     let responseUrl = await fetch(url);
     currentPokemon = await responseUrl.json();
     let currentPokemonCard = currentPokemon['abilities'];
-    let currentPokemonClass = currentPokemon['types']//[0]['type']['name'];
+    let currentPokemonClass = currentPokemon['types'][0]['type']['name'];
     //let currentPokemonClass2 = currentPokemon['types'][1]['type']['name'];
 
-    for (let k = 0; k < currentPokemonClass.length; k++) {
+/*    for (let k = 0; k < currentPokemonClass.length; k++) {
         const loadedPokemonClasses = currentPokemonClass[k];
         let currentClasses = loadedPokemonClasses['type']['name'];
         console.log('pokemonklasse =', currentClasses, loadedPokemonClasses);
-       
-    }
-    setStyleAttributes(pokeName);
-
+        
+    }*/
     
-   // setBackgroundCurrentPokemon(currentPokemonClass);
+    setStyleAttributes(pokeName);
+    
+    setBackgroundCurrentPokemon(currentPokemonClass);
     forLoopCurrentCard(currentPokemonCard);
     
     let image = document.getElementById(`activePokemonImage`);
     generateImage(image);
-    console.log(pokeName)
+    console.log(pokeName);
 }
 
 async function loadCurrentPokemonFromApi(pokeName,i){
